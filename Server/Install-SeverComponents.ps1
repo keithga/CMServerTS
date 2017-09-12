@@ -59,6 +59,8 @@ write-verbose "Current ADK Version $CurrentADK required version $RequiredADK"
 
 if ( $MDTScripts ) {
 
+    if ( -not ( Test-Path "$MDTScripts\scripts\ztiutility.vbs" ) ) { throw "missing MDT path $MDTScripts" }
+
     Write-Verbose "copy $PSScriptRoot\..\MDTPackage $MDTScripts"
     robocopy /e /ndl /np "$PSScriptRoot\..\MDTPackage" "$MDTScripts" | Out-String -Width 200 | write-verbose
 
@@ -72,6 +74,8 @@ if ( $MDTScripts ) {
 }
 
 if ( $MDTSettings ) {
+
+    if ( -not ( Test-Path "$MDTSettings\unattend.xml" ) ) { throw "missing MDT settings path $MDTSettings" }
 
     Write-Verbose "copy $PSScriptRoot\..\SettingsPackage $MDTSettings"
     robocopy /e /ndl /np "$PSScriptRoot\..\SettingsPackage" "$MDTSettings" | Out-String -Width 200 | write-verbose

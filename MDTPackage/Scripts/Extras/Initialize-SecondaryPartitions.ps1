@@ -13,6 +13,9 @@ Volume Names?!?!
 Make it all dynamic
 Assign variables to each partition created.
 
+ Get-Disk | Where-Object operationalstatus -ne Online | set-Disk -IsOffline $False
+
+
 
 #>
 
